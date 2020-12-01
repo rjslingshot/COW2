@@ -19,3 +19,6 @@ cards = {
 }
 deck = {}
 barrows = {}
+test = {}
+
+deck2 = []

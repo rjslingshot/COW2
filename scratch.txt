@@ -88,6 +88,7 @@ class Card:
 ---------------------
     #value = list(cards.values())[x]["value"]
     #suit = list(cards.values())[x]["suit"]
+    #print(chr(27) + "[2J")
 --------------------
 
 ##print(objects.card('4',2), end = '')
