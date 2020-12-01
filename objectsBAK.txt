@@ -1,0 +1,117 @@
+
+def card(value,suit):
+  ## Determine symbol
+  if value == 'JK':
+    # no symbol for Jokers
+    symbol = ' '
+  else:
+    suit=int(suit)
+    symbol = '♥♦♣♠'[suit-1] # 1,2,3,4 = ♥♦♣♠
+
+  ## Filler spaces for value row
+  if len(value) > 1:
+    fill = '   '
+  else:
+    fill = '    '
+
+  ## Set text color
+  if suit == '1' or suit == '2':
+    # red
+    color = '\033[31m';  
+  elif suit == '3' or suit == '4':
+    # blue
+    color = '\033[34m'
+
+  ## Create string to display card
+  card = color + "┌────────┐\n| " + symbol + "      |\n|        |\n|   " + value + fill + "|\n|        |\n|      " + symbol + " |\n└────────┘"
+  
+  return card
+
+def symbol(suit):
+  ## Determine symbol
+  if suit == "H":
+    symbol = '♥'
+  elif suit =="D":
+    symbol = '♦'
+  elif suit =="C":
+    symbol = '♣'
+  elif suit =="S":
+    symbol = '♠'
+  else:
+    symbol = ' '
+  return symbol
+
+def color(suit):
+  ## Set text color
+  if suit == 'D' or suit == 'H' or suit == 'R':
+    # red
+    color = '\033[31m'  
+  elif suit == 'C' or suit == 'S' or suit == 'B':
+    # blue
+    color = '\033[34m'
+  else:
+    # no color
+    color = '\033[0m'
+
+  return color
+
+def fill(value):
+  ## Filler spaces for value row
+  if len(value) > 1:
+    fill = value + '   '
+  else:
+    fill = value + '    '
+  return fill
+
+def ranks(cards):
+  
+  card1Value = cards[0]
+  card1Suit = cards[1]
+  card2Value = cards[2]
+  card2Suit = cards[3]
+  card3Value = cards[4]
+  card3Suit = cards[5]  
+
+  row1 = color(card1Suit) + "  ┌────────┐ " + color(card2Suit) + " ┌────────┐ " + color(card3Suit) + " ┌────────┐  "
+  
+  row2 = color(card1Suit)+"  | "+symbol(card1Suit)+"      |  "+color(card2Suit)+"| "+symbol(card2Suit)+"      |  "+color(card3Suit)+"| "+symbol(card3Suit)+"      |  "
+
+  row3 = color(card1Suit)+"  |        |  "+color(card2Suit)+"|        |  "+color(card3Suit)+"|        |  "
+
+  row4 = color(card1Suit)+"  |   "+fill(card1Value)+"|  "+color(card2Suit)+"|   "+fill(card2Value)+"|  "+color(card3Suit)+"|   "+fill(card3Value)+"|  "
+
+  row5 = row3
+
+  row6 = color(card1Suit)+"  |      "+symbol(card1Suit)+" |  "+color(card2Suit)+"|      "+symbol(card2Suit)+" |  "+color(card3Suit)+"|      "+symbol(card3Suit)+" |  "
+
+  row7 = color(card1Suit) + "  └────────┘ " + color(card2Suit) + " └────────┘ " + color(card3Suit) + " └────────┘  "
+
+  ranks = row1 + "\n" + row2 + "\n" + row3 + "\n" + row4 + "\n" + row5 + "\n" + row6 + "\n" + row7
+  return ranks
+
+#-----------------------------------
+
+def buildRank(cards):
+  row1 = ""
+  row2 = ""
+  row3 = ""
+  row4 = ""
+  row5 = ""
+  row6 = ""
+  row7 = ""
+
+  for x in cards:
+    value = (cards[x]["value"])
+    suit = (cards[x]["suit"])
+  
+    row1 = row1 + color(suit) + "  ┌────────┐  "
+    row2 = row2 + color(suit) + "  | "+symbol(suit)+"      |  "
+    row3 = row3 + color(suit) + "  |        |  "
+    row4 = row4 + color(suit) + "  |   "+fill(value)+"|  "
+    row5 = row5 + color(suit) + "  |        |  "
+    row6 = row6 + color(suit) + "  |      "+symbol(suit)+" |  "
+    row7 = row7 + color(suit) + "  └────────┘  " 
+
+  rank = row1 + "\n" + row2 + "\n" + row3 + "\n" + row4 + "\n" + row5 + "\n" + row6 + "\n" + row7
+
+  return rank

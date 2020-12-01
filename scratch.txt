@@ -1,0 +1,141 @@
+class Card:
+    def __init__(self,value,suit):
+        self.value = value
+        self.suit = '♥♦♣♠'[suit-1] # 1,2,3,4 = ♥♦♣♠
+
+    def print(self):
+        print('┌───────┐')
+        print(f'| {self.value:<2}    |')
+        print('|       |')
+        print(f'|   {self.suit}   |')
+        print('|       |')
+        print(f'|    {self.value:>2} |')
+        print('└───────┘') 
+
+
+
+blank = ''' ____\n|    |\n|    |\n|____|'''
+
+def card(card):
+  return " ___\n|   |\n| {} |\n|___|".format(card)
+
+
+
+  '''  if suit == 1 or suit == 2:
+     color = '\033[31m'
+  elif suit == 3 or suit == 4:
+     color = '\033[34m'''' 
+
+
+
+--------------------------------
+
+  #card1 = cards[0:1]
+  #card2 = cards[2:3]
+  #card3 = cards[4:5]
+
+  ##card1 = ['3',2]
+  ##card2 = ['Q',3]
+  ##card3 = ['K',4]
+
+  row1 = color(card1[1]) + "  ┌────────┐ " + color(card2[1]) + " ┌────────┐ " + color(card3[1]) + " ┌────────┐  "
+  
+  row2 = color(card1[1])+"  | "+symbol(card1[1])+"      |  "+color(card2[1])+"| "+symbol(card2[1])+"      |  "+color(card3[1])+"| "+symbol(card3[1])+"      |  "
+
+  row3 = color(card1[1])+"  |        |  "+color(card2[1])+"|        |  "+color(card3[1])+"|        |  "
+
+  row4 = color(card1[1])+"  |   "+fill(card1[0])+"|  "+color(card2[1])+"|   "+fill(card2[0])+"|  "+color(card3[1])+"|   "+fill(card3[0])+"|  "
+
+  row5 = row3
+
+  row6 = color(card1[1])+"  |      "+symbol(card1[1])+" |  "+color(card2[1])+"|      "+symbol(card2[1])+" |  "+color(card3[1])+"|      "+symbol(card3[1])+" |  "
+
+  row7 = color(card1[1]) + "  └────────┘ " + color(card2[1]) + " └────────┘ " + color(card3[1]) + " └────────┘  "
+
+
+  ------------------------------------------------------
+
+##c1=objects.Card('8',4)
+##c2=objects.Card('K',1)
+##c2.print()
+##c1.print()
+
+class Card:
+    def __init__(self,value,suit):
+        self.value = value
+        self.suit = '♥♦♣♠'[suit-1] # 1,2,3,4 = ♥♦♣♠
+        
+        if suit == 1 or suit == 2:
+          self.color = '\033[31m'
+        elif suit == 3 or suit == 4:
+          self.color = '\033[34m'
+
+    def print(self):
+        print(f'{self.color}┌────────┐')
+        print(f'| {self.suit}      |')
+        print('|        |')
+        print(f'|   {self.value:<2}   |')
+        print('|        |')
+        print(f'|      {self.suit} |')
+        print('└────────┘') 
+-------------------------------------------------
+##print(display.output("<BackgroundLightGray>" + battlefield.card('5') + "<Reset>"))
+##print(battlefield.blank)
+
+##print (objects.symbol(5))
+##print (objects.color(4) + "some text")
+
+---------------------
+    #value = list(cards.values())[x]["value"]
+    #suit = list(cards.values())[x]["suit"]
+--------------------
+
+##print(objects.card('4',2), end = '')
+##print(objects.card('JK',1))
+
+
+'''
+front=['3',1,'10',4,'4',4]
+rear=['Q',1,'K',4,'JK',2]
+'''
+
+front=['3','S','10','C','4','C']
+rear=['3','H','K','C','JK','B']
+hand = {
+  1 : {
+    "value":"3",
+    "suit":"D"
+  },
+  2 : {
+    "value":"4",
+    "suit":"S"
+  },
+  3 : {
+    "value":"JK",
+    "suit":"R"
+  },
+  4 : {
+    "value":"10",
+    "suit":"D"
+  }
+}
+
+#print (objects.ranks(front))
+#print (objects.ranks(rear))
+
+#print (objects.buildRank(front))
+##print (objects.buildRank(hand))
+
+#playerIndex = list(stats.player.keys()).index(player)
+#name = str(list(stats.player.values())[playerIndex]["name"])
+
+toSend = []
+for x in hand:
+  toSend.append(hand[x]["value"])
+  toSend.append(hand[x]["suit"])
+  #print(hand[x]["value"])
+  
+  #print (list(hand.values())[x]["value"])
+
+#print (objects.ranks(toSend))
+---------------------------------
