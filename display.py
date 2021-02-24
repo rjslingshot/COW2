@@ -1,6 +1,14 @@
 import re
 
 def output(text):
+  ##------
+  ## This formats output for provided text based on tags
+  ##  and is used in the Methods.py
+  ##
+  ## Example: print(display.output("<Red>My Text<Reset>\n"))
+  ##   "Red" defines the color and <Reset> changes the text   
+  ##    color back. '\n' generates a carriage return
+  ##------
   for i in range(50):
     # STYLES
     text = re.sub("<Bold>","\033[1m",text)

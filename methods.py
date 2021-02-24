@@ -1,7 +1,15 @@
+##------
+## These are the methods used in the game
+##
+##------
+
 import objects
+import random
 
 def symbol(suit):
-  ## Determine symbol
+  ##------
+  ## define symbol for printing cards to screen
+  ##------
   if suit == "H":
     symbol = '♥'
   elif suit =="D":
@@ -15,7 +23,9 @@ def symbol(suit):
   return symbol
 
 def color(suit):
-  ## Set text color
+  ##------
+  ## define text color for printing cards to screen
+  ##------
   if suit == 'D' or suit == 'H' or suit == 'R':
     # red
     color = '\033[31m'  
@@ -29,76 +39,39 @@ def color(suit):
   return color
 
 def fill(value):
-  ## Filler spaces for value row
+  ##------
+  ## provides spacing for printing cards to screen
+  ##------
   if len(value) > 1:
     fill = value + '   '
   else:
     fill = value + '    '
   return fill
 
-## ----------------------------------------
-##            USING DICTIONARIES
-## ----------------------------------------
-
-def displayCards(cards):
-  row1 = ""
-  row2 = ""
-  row3 = ""
-  row4 = ""
-  row5 = ""
-  row6 = ""
-  row7 = ""
-
-  # build the cards line by line
-  for x in cards:
-    value = (cards[x]["value"])
-    suit = (cards[x]["suit"])
-  
-    row1 = row1 + color(suit) + "  ┌────────┐  "
-    row2 = row2 + color(suit) + "  | "+symbol(suit)+"      |  "
-    row3 = row3 + color(suit) + "  |        |  "
-    row4 = row4 + color(suit) + "  |   "+fill(value)+"|  "
-    row5 = row5 + color(suit) + "  |        |  "
-    row6 = row6 + color(suit) + "  |      "+symbol(suit)+" |  "
-    row7 = row7 + color(suit) + "  └────────┘  " 
-
-  # put it all together
-  rank = row1 + "\n" + row2 + "\n" + row3 + "\n" + row4 + "\n" + row5 + "\n" + row6 + "\n" + row7
-
-  return rank
-  
-
 def shuffle():
-  suits=['H','D','C','S']
-  values=['A','2','3','4','5','6','7','8','9','10','J','Q','K']
-  n = 1
-
-  for x in suits:
-    for a in values:
-      objects.deck[n] = {"value": a, "suit":x}
-      n=n+1
-      #{'name': 'Cara', 'age': 25}
-      #objects.deck.update({"value": a},{"suit":x}) 
-      #print(a + x)
-
-## ----------------------------------------
-##                USING LISTS
-## ----------------------------------------
-def shuffle2():
+  ##------
+  ## Creates a list of cards and shuffles them
+  ##------
   suits=['H','D','C','S']
   values=['A','2','3','4','5','6','7','8','9','10','J','Q','K']
 
   # add the main cards with a hyphen delimiter
   for x in suits:
     for a in values:
-      objects.deck2.append(a+"-"+x)
+      objects.deck.append(a+"-"+x)
 
   # add the jokers
-  objects.deck2.append("JK-R")
-  objects.deck2.append("JK-B")
+  objects.deck.append("JK-R")
+  objects.deck.append("JK-B")
 
-# -- DISPLAY CARD(s)
-def displayCards2(cards):
+  # shuffle the cards
+  random.shuffle(objects.deck)
+
+def displayCards(cards):
+  ##------
+  ## prints out a graphical representation 
+  ##  for a list of cards
+  ##------
   row1 = ""
   row2 = ""
   row3 = ""
@@ -109,8 +82,8 @@ def displayCards2(cards):
 
   # build the cards line by line
   for x in cards:
-    value = (cards[x]["value"])
-    suit = (cards[x]["suit"])
+    value = x.split("-")[0]
+    suit = x.split("-")[1]
   
     row1 = row1 + color(suit) + "  ┌────────┐  "
     row2 = row2 + color(suit) + "  | "+symbol(suit)+"      |  "
@@ -121,12 +94,25 @@ def displayCards2(cards):
     row7 = row7 + color(suit) + "  └────────┘  " 
 
   # put it all together
-  rank = row1 + "\n" + row2 + "\n" + row3 + "\n" + row4 + "\n" + row5 + "\n" + row6 + "\n" + row7
+  printedCards = row1 + "\n" + row2 + "\n" + row3 + "\n" + row4 + "\n" + row5 + "\n" + row6 + "\n" + row7
 
-  return rank
+  return printedCards
 
 
-#---------------
-def test():
-  print(objects.deck2)
-  #shuffle()
+def drawCard(source,destination,start,stop):
+  ##------
+  ## draws card from list and adds to destination
+  ##------
+  i = 0
+  while i < stop:
+    destination.append(source[0])
+    source.pop(start)
+    i += 1
+
+def discardCard(card, source, destination):
+  # move card to destination
+  destination.insert(0,card)
+  # find index number for card in source
+  i = source.index(card)
+  # remove card from source
+  source.pop(i)

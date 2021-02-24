@@ -1,24 +1,18 @@
-##H,D,C,S
-cards = {
-  1 : {
-    "value":"A",
-    "suit":"H"
-  },
-  2 : {
-    "value":"2",
-    "suit":"H"
-  },
-  3 : {
-    "value":"3",
-    "suit":"H"
-  },
-  4 : {
-    "value":"4",
-    "suit":"H"
-  },
-}
-deck = {}
-barrows = {}
-test = {}
+##------
+## These are the objects used in the game
+##
+##------
 
-deck2 = []
+greeting = "<LightGreen>-- Welcome to Cards of War --<Reset>\n"
+deck = []
+barrows = []
+testHand = []
+
+# -----------------------
+testCards = ['JK-B', '10-S', '7-D', '4-H', 'J-C']
+testCard = ''
+
+hands = {
+    'Player 1': ['JK-B', '10-S', '7-D', '4-H', 'J-C'],
+    'Player 2': ['Q-H', '3-S', '7-S', '5-D']
+}
