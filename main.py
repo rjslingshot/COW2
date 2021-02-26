@@ -9,13 +9,17 @@ import methods
 import objects
 import testing
 
-# -- greet the player --
-print(display.output(objects.greeting))
+#player = "p1"
+#playerIndex = list(stats.player.keys()).index(player)
+playerIndex = 0
 
+# -- greet the player --
+#print(display.output(objects.greeting))
+#methods.displaymenu(playerIndex)
 testing.doStuff()
 
 
-#print(methods.displayCards(objects.testHand))
+print(methods.displayCards(objects.testHand))
 
 
 

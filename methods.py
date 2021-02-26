@@ -5,6 +5,11 @@
 
 import objects
 import random
+import display
+
+#--  Clear the output window  --
+def clearScreen():
+  print("\033c")
 
 def symbol(suit):
   ##------
@@ -98,7 +103,6 @@ def displayCards(cards):
 
   return printedCards
 
-
 def drawCard(source,destination,start,stop):
   ##------
   ## draws card from list and adds to destination
@@ -116,3 +120,25 @@ def discardCard(card, source, destination):
   i = source.index(card)
   # remove card from source
   source.pop(i)
+
+def defineMenu():
+  options = "What would you like to do? \n <Cyan>Draw<Reset>, <Red>Discard<Reset> or <Magenta>Quit<Reset>\n"
+  
+  return options
+
+#--  Display main menu  --
+def displaymenu(playerIndex):
+  #display main menu
+  action = input(display.output(defineMenu())).lower()
+  #continue menu display until player choses to go forward
+  while action != "g":
+    validateMenu(action,playerIndex)
+    action = input(display.output(defineMenu())).lower()
+
+#--  Validate selection options for main menu  --
+def validateMenu(choice, playerIndex):
+  if choice == "q":
+    raise SystemExit
+  elif choice == "h":
+    clearScreen()
+    print("ok whatever...")
