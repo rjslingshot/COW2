@@ -21,19 +21,23 @@ I will break it down in the following way:
     + Location --_{pointer to collection}_
     + Owner --_{pointer to player}_
   + Methods
-    + ModifyAttack (how, amount)
-    + ModifyDefense (how, amount)
-    + Flip ()
+    + ModifyValue (value, how, amount)
+    + Flip (collection, card)
+    + SetOwner (player)
 
 ### Collections
   + Attributes
-    + Name --_{Deck, Barrows, Hand, etc..}_
+    + Name --_{Deck, Barrows, Hand, Front Ranks, etc..}_
     + Cards --_{list of cards}_
     + Owner --_{pointer to player}_
+    + SizeLimit --_{maximum number of card for collection}_
   + Methods
-    + Draw (card,destination)
+    + Draw (card, destination)
     + Discard (card, destination)
     + Deploy (card, destination)
+    + GetRandom ()
+    + GetNext ()
+    + AddCard (card)
 
 ### Players 
   + Attributes
@@ -42,7 +46,7 @@ I will break it down in the following way:
     + Health --_{player health}_
     + Current --_{yes or no}_
   + Methods
-    + 
+    + ModifyHealth (how, amount)
 
 ***
 The card's special abilities and house traits will be difficult to manage. I'm listing these here for future consideration.
@@ -57,3 +61,9 @@ The card's special abilities and house traits will be difficult to manage. I'm l
     + --_{}_
   + Methods
     + 
+
+***
+###NOTES:
+1. I am considering that the game itself will need to be a "player". For example the game (player 0) needs to have ownership of the Deck, Barrows, etc..
+2. The Draw methos would default to pulling the top card. However if a player is able to draw a specific card, then the card param must be passed
+3. 
